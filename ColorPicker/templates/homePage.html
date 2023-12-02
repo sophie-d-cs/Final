@@ -6,30 +6,13 @@
 {% block main %}
     <!-- make sure that url up top matches html page -->
     <form action="/homePage" method="post">
-        <div class="section">
-
-            <h2>Index</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Price</th>
-                        <th>Number of Shares</th>
-                        <th>Value of Holding</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <!-- TODO: Loop through the database entries to display them in this table -->
-                        {% for row in rows %}
-                            <tr>
-                                <td>{{row.symbol }}</td>
-                                <td>{{row.price }}</td>
-                                <td>{{row.shares }}</td>
-                                <td>{{row.price*row.shares }}</td>
-                            </tr>
-                        {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        <body background="homepage.png">
+            <h1>
+                Welcome to PaletteMe!
+            </h1>
+            <h3>
+                Input a color, and we will give you a corresponding palette that you can use for painting inspiration, interior decor, and so much more!
+            </h3>
+        </body>
     </form>
 {% endblock %}

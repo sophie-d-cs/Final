@@ -1,30 +1,74 @@
+/* makes nav display flex */
+navbar {
+    display: flex;
+}
+
 /* Size for brand */
 nav .navbar-brand
 {
     font-size: xx-large;
+    width: .1%;
 }
 
 /* Colors for brand */
 nav .navbar-brand .blue
 {
-    color: #537fbe;
+    color: #9ef9fa;
 }
 nav .navbar-brand .red
 {
-    color: #ea433b;
+    color: #db5934;
+}
+nav .navbar-brand .darkred
+{
+    color: #550d0d;
+}
+nav .navbar-brand .purple
+{
+    color: #704545;
+}
+nav .navbar-brand .pink
+{
+    color: #fcad98;
 }
 nav .navbar-brand .yellow
 {
-    color: #f5b82e;
+    color: #f6a62d;
 }
 nav .navbar-brand .green
 {
-    color: #2e944b;
+    color: #006e62;
 }
-table {
+nav .navbar-brand .darkblue
+{
+    color: #54716c;
+}
+nav .navbar-brand .lightblue
+{
+    color: #9db8cc;
+}
+/* makes background color for elements */
+table 
+{
     background-color: transparent;
     margin-bottom: 1rem;
     width: 100%;
+}
+p 
+{
+    background-color: #f4f1e1;
+}
+h1 
+{
+    background-color: #f4f1e1;
+}
+h2 
+{
+    background-color: #f4f1e1;
+}
+h3 
+{
+    background-color: #f4f1e1;
 }
 
 table th,
@@ -35,4 +79,11 @@ table td {
 
 tbody tr:nth-of-type(odd) {
     background-color: rgb(179, 208, 255, 0.3)
+}
+/* adds image to background of entire website */
+body 
+{
+    background-image: url('homepage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
