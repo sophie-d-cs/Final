@@ -35,6 +35,12 @@ def homePage():
     if request.method == "GET":
         return render_template("homePage.html")
 
+@app.route("/history")
+@login_required
+def history():
+    rows = db.execute("SELECT * FROM transactions WHERE user_id = ?", session["user_id"])
+    return render_template("history.html", rows=rows)
+
 
 @app.route("/colorPicker", methods=["GET", "POST"])
 @login_required
