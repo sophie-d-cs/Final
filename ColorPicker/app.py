@@ -44,10 +44,11 @@ def history():
 
 @app.route("/colorPicker", methods=["GET", "POST"])
 @login_required
-def homePage():
-    if request.method == "GET":
-        return render_template("homePage.html")
-    if request.method == "GET":
+def colorPick():
+    if request.method == "POST":
+        color_value = request.form.get("color")
+        render_template("chosenColor.html", color_value)
+    else:
         return render_template("colorPicker.html")
 
 

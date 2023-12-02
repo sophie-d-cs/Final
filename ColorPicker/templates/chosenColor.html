@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}
+    Color Picker
+{% endblock %}
+
+{% block main %}
+    <!-- make sure that url up top matches html page -->
+    <form action="/chosenColor" method="post">
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="color" name="color" placeholder="Color" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">See Color</button>
+    </form>
+{% endblock %}
