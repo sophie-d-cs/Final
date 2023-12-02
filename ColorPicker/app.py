@@ -28,13 +28,6 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-@app.route("/", methods=["GET", "POST"])
-@login_required
-#homepage html page, no functionality, just scrolling
-def index():
-    if request.method == "GET":
-        return render_template("index.html")
-
 @app.route("/history")
 @login_required
 def history():
@@ -42,13 +35,11 @@ def history():
     return render_template("history.html", rows=rows)
 
 
-@app.route("/colorPicker", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def homePage():
     if request.method == "GET":
         return render_template("homePage.html")
-    if request.method == "GET":
-        return render_template("colorPicker.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
