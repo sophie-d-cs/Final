@@ -7,8 +7,9 @@
     <!-- make sure that url up top matches html page -->
     <form action="/colorPicker" method="post">
         <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="color" name="color" placeholder="Color" type="number">
+            <label for="colorpicker">Color Picker:</label>
+            <input type="color" id="colorpicker" value="#0000ff">
         </div>
-        <button class="btn btn-primary" type="submit">See Color</button>
+        <!-- add button for type of color -->
     </form>
 {% endblock %}
