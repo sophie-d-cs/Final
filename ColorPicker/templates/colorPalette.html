@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block title %}
-    Color Picker
+    Color Pallettes
 {% endblock %}
 
 {% block main %}
     <!-- make sure that url up top matches html page -->
-    <form action="/chosenColor" method="post">
+    <form action="/colorPallette" method="post">
         <div class="mb-3">
             <input class="form-control mx-auto w-auto" id="color" name="color" placeholder="Color" type="number">
         </div>
