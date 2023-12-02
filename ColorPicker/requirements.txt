@@ -1,4 +1,4 @@
-cs50
 Flask
-Flask-Session
+flask_session
 requests
+cs50
