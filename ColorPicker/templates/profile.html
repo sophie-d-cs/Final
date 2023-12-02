@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+    <!-- make sure that url up top matches html page -->
+    <form action="/profile" method="post">
+        <h2>Profile</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Current Money</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td>{{ cash }}</td>
+                        </tr>
+                </tbody>
+            </table>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="add" name="add" placeholder="Add Money" type="integer">
+        </div>
+        <button class="btn btn-primary" type="submit">Add Money</button>
+    </form>
+{% endblock %}
