@@ -34,12 +34,18 @@ def history():
     rows = db.execute("SELECT * FROM transactions WHERE user_id = ?", session["user_id"])
     return render_template("history.html", rows=rows)
 
+@app.route("/colorPick")
+@login_required
+def colorPick():
+    if request.method == "GET":
+        return render_template("colorPick.html")
+    if request.method == "POST":
+
 
 @app.route("/", methods=["GET", "POST"])
-@login_required
-def homePage():
+def index():
     if request.method == "GET":
-        return render_template("homePage.html")
+        return render_template("index.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
