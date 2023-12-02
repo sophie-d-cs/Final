@@ -7,7 +7,6 @@ navbar {
 nav .navbar-brand
 {
     font-size: xx-large;
-    width: .1%;
 }
 
 /* Colors for brand */
@@ -70,11 +69,15 @@ h3
 {
     background-color: #f4f1e1;
 }
-
+.mb-3
+{
+    background-color: #f4f1e1;
+}
 table th,
 table td {
     padding: 0.75rem;
     vertical-align: middle;
+    background-color: #f4f1e1;
 }
 
 tbody tr:nth-of-type(odd) {

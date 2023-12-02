@@ -1,15 +1,17 @@
 {% extends "layout.html" %}
 {% block title %}
-    Color Pallettes
+    Color Palettes
 {% endblock %}
 
 {% block main %}
     <!-- make sure that url up top matches html page -->
-    <form action="/colorPallette" method="post">
-        <div class="mb-3">
-                <!-- display inputted clors -->
-
+    <form action="/colorPalette" method="post">
+        {% for color in colors %}
+        <div class="color" style="background-color: {{ color }};">
+            <!-- display inputted clors -->
+            
         </div>
+        {% endfor %}
         <button class="btn btn-primary" type="submit">See Color</button>
     </form>
 {% endblock %}
