@@ -48,6 +48,10 @@ def index():
     if request.method == "GET":
         return render_template("index.html")
 
+@app.route("/homePage", methods=["GET"])
+def homePage():
+    if request.method == "GET":
+        return render_template("homePage.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
