@@ -31,7 +31,7 @@ def after_request(response):
 @app.route("/history")
 @login_required
 def history():
-    rows = db.execute("SELECT * FROM transactions WHERE user_id = ?", session["user_id"])
+    rows = db.execute("SELECT * FROM palettes WHERE user_id = ?", session["user_id"])
     return render_template("history.html", rows=rows)
 
 @app.route("/colorPick")
@@ -66,6 +66,7 @@ def colorPick():
         color_4 = 0xFFFFFF ^ color_3
         color_4 = "%06X" % color_4
         colors = [color, comp_color, color_3, color_4]
+        
 
         return render_template("colorPalette.html", colors = colors)
 
