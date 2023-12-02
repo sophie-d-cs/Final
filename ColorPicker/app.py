@@ -40,6 +40,34 @@ def colorPick():
     if request.method == "GET":
         return render_template("colorPick.html")
     if request.method == "POST":
+        hex_color = request.form.get("value")
+        color = hex_color[1:]
+
+        # convert the string into hex
+        color = int(color, 16)
+        #get complementary colors
+        comp_color = 0xFFFFFF ^ color
+        comp_color = "#%06X" % comp_color
+        #get opposing middle colors
+        red_hex = color[1:3]
+        green_hex = color[3:5]
+        blue_hex = color[5:7]
+
+        new_blue = (255-(int(blue_hex, 16))/2)
+        new_red =(255-(int(red_hex, 16))/2)
+        new_green = (255-(int(green_hex, 16))/2)
+        color_3 = str(new_red)+ str(new_green)+ str(new_blue)
+        color_3 = "#%06X" % color_3
+
+        colo_r4 = int(color_3, 16)
+        #get complementary colors
+        color_4 = 0xFFFFFF ^ color_3
+        color_4 = "#%06X" % color_4
+
+        return render_template("colorPick.html", color1 = hex_color, color2 = comp_color, color3 = color_3, color4 = color_4)
+
+
+
 
 
 @app.route("/", methods=["GET", "POST"])
