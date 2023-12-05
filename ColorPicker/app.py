@@ -37,9 +37,7 @@ def history():
 @app.route("/colorPick")
 @login_required
 def colorPick():
-    if request.method == "GET":
-        return render_template("colorPick.html")
-    else:
+    if request.method == "POST":
         color = request.form.get("value")
         # convert the string into hex
         color1 = int(color, 16)
@@ -69,6 +67,8 @@ def colorPick():
         
 
         return render_template("scrap.html")
+    else:
+        return render_template("colorPick.html")
 
 
 @app.route("/", methods=["GET", "POST"])
