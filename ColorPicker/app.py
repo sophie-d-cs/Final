@@ -34,14 +34,14 @@ def history():
     rows = db.execute("SELECT * FROM palettes WHERE user_id = ?", session["user_id"])
     return render_template("history.html", rows=rows)
 
-@app.route("/colorPick")
+@app.route("/colorPick", methods=["GET", "POST"])
 @login_required
 def colorPick():
     if request.method == "GET":
         return render_template("colorPick.html")
     else:
-        color = request.form.get("value")
-        # convert the string into hex
+        color = request.form.get("colorVal")
+        color = str(color)
         color1 = int(color, 16)
         #get complementary colors
         comp_color = 0xFFFFFF ^ color1
