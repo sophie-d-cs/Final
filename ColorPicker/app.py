@@ -39,7 +39,7 @@ def history():
 def colorPick():
     if request.method == "GET":
         return render_template("colorPick.html")
-    if request.method == "POST":
+    else:
         color = request.form.get("value")
         # convert the string into hex
         color1 = int(color, 16)
@@ -66,11 +66,14 @@ def colorPick():
         color_4 = 0xFFFFFF ^ color_3
         color_4 = "%06X" % color_4
         colors = [color, comp_color, color_3, color_4]
-        
+        return redirect("/colorPalette")
 
-        return render_template("colorPalette.html", colors = colors)
-
-
+@app.route("/colorPalette")
+@login_required
+def colorPalette():
+    return render_template('colorPalette.html')
+    
+    
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
