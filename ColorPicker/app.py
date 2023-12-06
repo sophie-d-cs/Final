@@ -67,15 +67,15 @@ def colorPick():
         color3=round(new_red)*10000+ round(new_green)*100+ round(new_blue)
         color_4 = 0xFFFFFF ^ color3
         color_4 = "%06X" % color_4
+        global colors
         colors = [color, comp_color, color_3, color_4]
         return redirect("/colorPalette")
 
 @app.route("/colorPalette")
 @login_required
 def colorPalette():
-    return render_template('colorPalette.html')
-    
-    
+    return render_template('colorPalette.html', colors = colors)    
+
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
