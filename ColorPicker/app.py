@@ -44,14 +44,14 @@ def colorPick():
         color = request.form.get("colorVal")
         color1 = int(color[1:], 16)
 
-        #get complementary colors
-        comp_color = 0xFFFFFF ^ color1
-        comp_color = "%06X" % comp_color
-
-        #get opposing middle colors as ints
         red = int(color[1:3], 16)
         green = int(color[3:5], 16)
         blue = int(color[5:7], 16)
+
+        #get complementary colors
+        r, g, b = int(255-red), int(255-green), int(255-blue)  # your RGB values
+        comp = "#{:02x}{:02x}{:02x}".format(r, g, b)
+       
 
         #change them as ints
         new_red =255-int(red/2)
@@ -61,14 +61,13 @@ def colorPick():
         #convert rgb to hex
         r, g, b = int(round(new_red)), int(round(new_green)), int(round(new_blue))  # your RGB values
         color_3 = "#{:02x}{:02x}{:02x}".format(r, g, b)
-        hex_value = "{:02x}{:02x}{:02x}".format(r, g, b)
 
         #get complementary colors again
-        color3=round(new_red)*10000+ round(new_green)*100+ round(new_blue)
-        color_4 = 0xFFFFFF ^ color3
-        color_4 = "%06X" % color_4
+        r, g, b = int(255-round(new_red)), int(255-round(new_green)), int(255-round(new_blue))  # your RGB values
+        comp2 = "#{:02x}{:02x}{:02x}".format(r, g, b)
+
         global colors
-        colors = [color, comp_color, color_3, color_4]
+        colors = [color, comp, color_3, comp2]
         return redirect("/colorPalette")
 
 @app.route("/colorPalette")
