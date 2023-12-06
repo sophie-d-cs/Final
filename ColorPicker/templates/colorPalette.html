@@ -7,7 +7,7 @@
     <!-- make sure that url up top matches html page -->
     <form action="/colorPalette" method="post">
         <div class="mb-3">
-            <label for="colorpicker">Color Palette:</label>
+            <label for="colorpicker">Color Palette Complimentary:</label>
         
         {% for color in colors %}
         <svg height="100" width="100">
@@ -15,5 +15,14 @@
           </svg>
         {% endfor %}
     </div>
+    <div class="mb-3">
+        <label for="colorpicker">Color Palette Warm:</label>
+    
+    {% for red in reds %}
+    <svg height="100" width="100">
+        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="{{red}}" />
+      </svg>
+    {% endfor %}
+</div>
     </form>
 {% endblock %}

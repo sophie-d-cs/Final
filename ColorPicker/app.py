@@ -48,32 +48,62 @@ def colorPick():
         green = int(color[3:5], 16)
         blue = int(color[5:7], 16)
 
-        #get complementary colors
+        #get complementary colors, create complimentary color
         r, g, b = int(255-red), int(255-green), int(255-blue)  # your RGB values
         comp = "#{:02x}{:02x}{:02x}".format(r, g, b)
-       
 
-        #change them as ints
+        #calculate new rgbs
         new_red =255-int(red/2)
         new_green = 255-int(green/2)
         new_blue = 255-int(blue/2)
 
-        #convert rgb to hex
+        #convert new rgb to hex, create new vals
         r, g, b = int(round(new_red)), int(round(new_green)), int(round(new_blue))  # your RGB values
         color_3 = "#{:02x}{:02x}{:02x}".format(r, g, b)
 
-        #get complementary colors again
+        #get complementary colors again of new rgbs
         r, g, b = int(255-round(new_red)), int(255-round(new_green)), int(255-round(new_blue))  # your RGB values
         comp2 = "#{:02x}{:02x}{:02x}".format(r, g, b)
 
         global colors
         colors = [color, comp, color_3, comp2]
+
+        #warm colors
+        if red*1.5 >255:
+            red = 255
+        else:
+            red = 1.5*red
+
+        green = green*.75
+        blue = blue*.75
+
+        r, g, b = int(red), int(green), int(blue) # your RGB values
+        color_1_red = "#{:02x}{:02x}{:02x}".format(r, g, b) 
+
+        #get complementary colors, create complimentary color
+        r, g, b = int(255-red), int(255-green), int(255-blue)  # your RGB values
+        color_2_red = "#{:02x}{:02x}{:02x}".format(r, g, b)
+        new_red_2 = round(255-red/2)
+        new_green_2 = round(255-green/2)
+        new_blue_2 = round(255-blue/2)
+                     
+        #convert new rgb to hex, create new vals
+        r, g, b = int(new_red_2), int(new_green_2), int(new_blue_2)  # your RGB values
+        color_3_red = "#{:02x}{:02x}{:02x}".format(r, g, b)
+
+        #get complementary colors again of new rgbs
+        r, g, b = int(255-new_red_2), int(255-round(new_green_2)), int(255-round(new_blue_2))  # your RGB values
+        color_4_red = "#{:02x}{:02x}{:02x}".format(r, g, b)
+        global reds
+        reds = [color_1_red, color_2_red, color_3_red, color_4_red]
+
+
         return redirect("/colorPalette")
 
 @app.route("/colorPalette")
 @login_required
 def colorPalette():
-    return render_template('colorPalette.html', colors = colors)    
+    return render_template('colorPalette.html', colors = colors, reds = reds)    
 
 
 @app.route("/", methods=["GET", "POST"])
