@@ -76,12 +76,6 @@ def colorPick():
 def colorPalette():
     return render_template('colorPalette.html')    
 
-@app.route("/history")
-@login_required
-def 
-
-
-
 
 @app.route("/", methods=["GET", "POST"])
 @login_required
