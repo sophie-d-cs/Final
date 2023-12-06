@@ -5,6 +5,7 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
+from ast import literal_eval
 
 from helpers import apology, login_required
 
@@ -34,42 +35,46 @@ def history():
     rows = db.execute("SELECT * FROM palettes WHERE user_id = ?", session["user_id"])
     return render_template("history.html", rows=rows)
 
-@app.route("/colorPick")
+@app.route("/colorPick", methods=["GET", "POST"])
 @login_required
 def colorPick():
-    if request.method == "POST":
-        color = request.form.get("value")
-        # convert the string into hex
-        color1 = int(color, 16)
+    if request.method == "GET":
+        return render_template("colorPick.html")
+    else:
+        color = request.form.get("colorVal")
+        color1 = int(color[1:], 16)
+
         #get complementary colors
         comp_color = 0xFFFFFF ^ color1
         comp_color = "%06X" % comp_color
 
-        #get opposing middle colors
-        red_hex = color[1:3]
-        green_hex = color[3:5]
-        blue_hex = color[5:7]
-        red = int(red_hex, 16)
-        green = int(green_hex, 16)
-        blue = int(blue_hex, 16)
+        #get opposing middle colors as ints
+        red = int(color[1:3], 16)
+        green = int(color[3:5], 16)
+        blue = int(color[5:7], 16)
 
-        new_blue = hex(255-blue/2)
-        new_red =hex(255-red/2)
-        new_green = hex(255-green/2)
+        #change them as ints
+        new_red =255-int(red/2)
+        new_green = 255-int(green/2)
+        new_blue = 255-int(blue/2)
 
-        color_3 = str(new_red)[2:]+ str(new_green)[2:]+ str(new_blue)[2:]
-        color_3 = int(color_3, 16)
+        #convert rgb to hex
+        r, g, b = int(round(new_red)), int(round(new_green)), int(round(new_blue))  # your RGB values
+        color_3 = "#{:02x}{:02x}{:02x}".format(r, g, b)
+        hex_value = "{:02x}{:02x}{:02x}".format(r, g, b)
 
         #get complementary colors again
-        color_4 = 0xFFFFFF ^ color_3
+        color3=round(new_red)*10000+ round(new_green)*100+ round(new_blue)
+        color_4 = 0xFFFFFF ^ color3
         color_4 = "%06X" % color_4
+        global colors
         colors = [color, comp_color, color_3, color_4]
-        
+        return redirect("/colorPalette")
 
-        return render_template("scrap.html")
-    else:
-        return render_template("colorPick.html")
-
+@app.route("/colorPalette")
+@login_required
+def colorPalette():
+    return render_template('colorPalette.html', colors = colors)    
 
 @app.route("/", methods=["GET", "POST"])
 @login_required
